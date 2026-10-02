@@ -25,15 +25,24 @@ God Remains Our Merciful Almighty Creator and Savior.
 
 ## Installation
 
+The recommended way is [pipx](https://pipx.pypa.io/), which installs the tool globally and independently of any active conda/venv environment:
+
 ```bash
-pip install gmx-quotes
+pipx install git+https://github.com/B-omics/gmx-quotes.git
 ```
 
-Or install directly from GitHub:
+If pipx is not installed yet:
+```bash
+pip install pipx
+pipx ensurepath
+```
 
+**Alternative** — plain pip (installs into the currently active environment):
 ```bash
 pip install git+https://github.com/B-omics/gmx-quotes.git
 ```
+
+If you use pip, make sure `~/.local/bin` is in your PATH and use `pip install --user` only outside a virtual environment. Inside conda/venv, omit `--user` and use the absolute path returned by `which gmx-quotes` in the shell integration snippet (see below).
 
 Requires Python ≥ 3.10.
 

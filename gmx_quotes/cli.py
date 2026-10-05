@@ -59,8 +59,16 @@ def _shell_integration(mode: str = "light") -> str:
 # Add to ~/.bashrc or ~/.zshrc, then reload your shell.
 
 gmx() {
-    command gmx "$@" 2>&1 | sed '/GROMACS reminds you/d'
-    local exit_code=${PIPESTATUS[0]}
+    case "$1" in
+        pdb2gmx|make_ndx|genion|genrestr|select|editconf)
+            command gmx "$@"
+            local exit_code=$?
+            ;;
+        *)
+            command gmx "$@" 2>&1 | sed '/GROMACS reminds you/d'
+            local exit_code=${PIPESTATUS[0]}
+            ;;
+    esac
     gmx-quotes
     return $exit_code
 }

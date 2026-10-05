@@ -69,7 +69,7 @@ gmx() {
             local exit_code=${PIPESTATUS[0]}
             ;;
     esac
-    gmx-quotes
+    [ $exit_code -eq 0 ] && gmx-quotes
     return $exit_code
 }
 """
@@ -81,7 +81,7 @@ gmx() {
 gmx() {
     command gmx "$@"
     local exit_code=$?
-    gmx-quotes
+    [ $exit_code -eq 0 ] && gmx-quotes
     return $exit_code
 }
 """
